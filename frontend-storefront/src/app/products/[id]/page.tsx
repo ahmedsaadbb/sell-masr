@@ -98,7 +98,7 @@ export default function ProductDetailPage() {
         <div className="grid md:grid-cols-2 gap-16 mb-20">
           <div className="aspect-square bg-gray-50 rounded-[3rem] overflow-hidden border border-gray-100 relative">
             {product.image_url ? (
-              <img src={`http://localhost:8000${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
+              <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-8xl">📦</div>
             )}
@@ -258,7 +258,7 @@ export default function ProductDetailPage() {
           {/* Image */}
           <div className="aspect-square bg-gray-50 rounded-[3rem] overflow-hidden border border-gray-100 relative">
              {product.image_url ? (
-                <img src={`http://localhost:8000${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
+                <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-8xl">📦</div>
               )}

@@ -99,7 +99,7 @@ export default function ProductsPage() {
                           <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center">
                               {product.image_url ? (
-                                <img src={`http://localhost:8000${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
+                                <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${product.image_url}`} alt={product.name} className="w-full h-full object-cover" />
                               ) : (
                                 "🖼️"
                               )}

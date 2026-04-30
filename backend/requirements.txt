@@ -10,3 +10,5 @@ python-multipart==0.0.6
 alembic==1.12.1
 cryptography==42.0.5
 python-magic==0.4.27
+psycopg2-binary==2.9.9
+asyncpg==0.29.0

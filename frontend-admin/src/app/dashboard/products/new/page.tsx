@@ -235,7 +235,7 @@ export default function NewProductPage() {
                 >
                   {formData.image_url ? (
                     <img 
-                      src={`http://localhost:8000${formData.image_url}`} 
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${formData.image_url}`} 
                       alt="Preview" 
                       className="absolute inset-0 w-full h-full object-cover"
                     />

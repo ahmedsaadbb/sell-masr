@@ -183,7 +183,7 @@ export default function StorefrontProductsPage() {
                       <div className="aspect-square relative overflow-hidden bg-gray-50 product-image">
                         {product.image_url ? (
                           <img 
-                            src={`http://localhost:8000${product.image_url}`} 
+                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${product.image_url}`} 
                             alt={product.name} 
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
@@ -360,7 +360,7 @@ export default function StorefrontProductsPage() {
                     <div className="aspect-square relative overflow-hidden bg-gray-50">
                       {product.image_url ? (
                         <img 
-                          src={`http://localhost:8000${product.image_url}`} 
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'}${product.image_url}`} 
                           alt={product.name} 
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
