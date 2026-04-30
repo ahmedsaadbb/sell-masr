@@ -4,6 +4,7 @@ from sqlmodel import Session as SQLSession, select
 from typing import Any
 from app.database import engine
 from app.models.user import User
+from app.models.setting import StoreSettings
 from app.dependencies import get_db, admin_required
 from app.utils.encryption import decrypt
 from openai import OpenAI

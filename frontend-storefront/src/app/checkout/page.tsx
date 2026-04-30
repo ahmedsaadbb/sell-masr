@@ -33,15 +33,123 @@ export default function CheckoutPage() {
       };
 
       await apiClient.post("/orders/", orderPayload);
-      alert("Order placed successfully!");
+      alert("تم تقديم الطلب بنجاح!");
       clearCart();
       router.push("/products");
     } catch (error) {
-      alert("Failed to place order. Check stock or details.");
+      alert("فشل في تقديم الطلب. يرجى التحقق من المخزون أو التفاصيل.");
       console.error(error);
     } finally {
       setLoading(false);
     }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans p-8" dir="rtl">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+        <div className="space-y-8 order-last md:order-first">
+          <Link href="/products" className="text-gray-500 hover:text-black font-bold flex items-center gap-2 rtl-flex-row">
+            ← العودة للتسوق
+          </Link>
+          <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
+            <h1 className="text-3xl font-black mb-8 text-right">تفاصيل التوصيل</h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-700 ml-1 block text-right">الاسم بالكامل</label>
+                <input
+                  type="text"
+                  required
+                  dir="rtl"
+                  className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-right"
+                  value={formData.customer_name}
+                  onChange={(e) => setFormData({...formData, customer_name: e.target.value})}
+                  placeholder="عبدالله محمد أحمد"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-700 ml-1 block text-right">رقم الهاتف (مصري)</label>
+                <input
+                  type="tel"
+                  required
+                  dir="ltr"
+                  placeholder="01xxxxxxxxx"
+                  className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-left"
+                  value={formData.customer_phone}
+                  onChange={(e) => setFormData({...formData, customer_phone: e.target.value})}
+                />
+                <p className="text-xs text-gray-400 text-right mt-1">
+                  يرجى إدخال رقم هاتف مصري صحيح للتواصل
+                </p>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-700 ml-1 block text-right">عنوان التوصيل</label>
+                <textarea
+                  required
+                  dir="rtl"
+                  rows={3}
+                  className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-right"
+                  placeholder="المدينة، الحي، الشارع، المبنى..."
+                  value={formData.shipping_address}
+                  onChange={(e) => setFormData({...formData, shipping_address: e.target.value})}
+                />
+              </div>
+              
+              <div className="pt-4">
+                <div className="p-6 bg-blue-50 rounded-2xl border border-blue-100 mb-6">
+                  <p className="text-blue-700 text-sm font-bold flex items-center gap-2 justify-end">
+                    ℹ️ طريقة الدفع: الدفع عند الاستلام (كاش)
+                  </p>
+                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-blue-600 text-white py-5 rounded-3xl font-black text-xl hover:bg-blue-700 transition-all shadow-xl hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+                >
+                  {loading ? "جاري المعالجة..." : "إتمام الطلب"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-black mb-8 text-right">ملخص الطلب</h2>
+            <div className="space-y-6">
+              {cart.map(item => (
+                <div key={item.id} className="flex gap-4 rtl-flex-row">
+                  <div className="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center text-2xl product-image">
+                    🧥
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-right">{item.name}</h4>
+                    <p className="text-gray-500 text-sm text-right">الكمية: {item.quantity}</p>
+                    <p className="font-black mt-1 text-right">{item.price.toLocaleString('ar-EG')} جنيه</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-10 pt-10 border-t border-gray-50 space-y-4">
+              <div className="flex justify-between text-gray-500 rtl-flex-row">
+                <span>المجموع الفرعي</span>
+                <span className="text-right">{total.toLocaleString('ar-EG')} جنيه</span>
+              </div>
+              <div className="flex justify-between text-gray-500 rtl-flex-row">
+                <span>التوصيل</span>
+                <span className="text-green-600 font-bold text-sm uppercase tracking-tighter text-right">مجاني للمطلقي</span>
+              </div>
+              <div className="flex justify-between text-2xl font-black pt-4 border-t border-gray-50 rtl-flex-row">
+                <span>الإجمالي</span>
+                <span className="text-blue-600">{total.toLocaleString('ar-EG')} جنيه</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
   };
 
   return (

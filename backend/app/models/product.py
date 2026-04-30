@@ -18,7 +18,7 @@ class ProductBase(SQLModel):
     stock_quantity: int = Field(default=0)
     sku: str = Field(unique=True, index=True)
     image_url: Optional[str] = None
-    category_id: Optional[int] = Field(default=None, foreign_key="category.id")
+    category_id: Optional[int] = Field(default=None, foreign_key="category.id", index=True)
 
 class Product(ProductBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

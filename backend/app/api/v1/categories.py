@@ -3,12 +3,7 @@ from sqlmodel import Session as SQLSession, select
 from typing import List, Any
 from app.database import engine
 from app.models.product import Category, CategoryRead
-
-router = APIRouter()
-
-def get_db():
-    with SQLSession(engine) as session:
-        yield session
+from app.dependencies import get_db
 
 @router.get("/", response_model=List[CategoryRead])
 def read_categories(

@@ -4,12 +4,8 @@ from typing import List, Any
 from app.database import engine
 from app.models.order import Order, OrderCreate, OrderRead, OrderItem
 from app.models.product import Product
-
-router = APIRouter()
-
-def get_db():
-    with SQLSession(engine) as session:
-        yield session
+from app.models.user import User, UserRole
+from app.dependencies import get_db, get_current_user, admin_required
 
 @router.post("/", response_model=OrderRead)
 def create_order(
@@ -95,14 +91,26 @@ def read_order(
 
 @router.patch("/{id}/status")
 def update_order_status(
-    *, db: SQLSession = Depends(get_db), id: int, status: str
+    *, 
+    db: SQLSession = Depends(get_db), 
+    id: int, 
+    status: str,
+    current_user: User = Depends(get_current_user)
 ) -> Any:
     """
-    Update order status.
+    Update order status. Only order owner or admin can update.
     """
     order = db.get(Order, id)
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
+    
+    # Check permissions: admin or order owner
+    if current_user.role != UserRole.ADMIN and order.user_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to update this order"
+        )
+    
     order.status = status
     db.add(order)
     db.commit()
