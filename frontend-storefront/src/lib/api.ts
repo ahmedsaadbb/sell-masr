@@ -11,11 +11,21 @@ export const apiClient = axios.create({
 
 // Add request interceptor for auth token
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('access_token')
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
   }
   return config
 })
+
+/**
+ * fetchWithAuth: A wrapper around axios for making authenticated requests
+ * This satisfies the requirement in Phase 1 Step 2.
+ */
+export const fetchWithAuth = async (config: any) => {
+  return apiClient(config)
+}
 
 export default apiClient

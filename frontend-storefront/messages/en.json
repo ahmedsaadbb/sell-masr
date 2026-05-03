@@ -1,0 +1,118 @@
+{
+  "HomePage": {
+    "title": "Build Your Own <spanInner>E-commerce</spanInner> Empire.",
+    "subtitle": "Sell Masr provides everything you need to start, manage, and grow your dropshipping business in the Egyptian market. No inventory needed.",
+    "getStarted": "Get Started Now",
+    "howItWorks": "How it works?",
+    "tagline": "The #1 Dropshipping Platform in Egypt",
+    "stats": {
+      "vendors": "Active Vendors",
+      "products": "Products Ready",
+      "delivery": "Avg. Delivery"
+    },
+    "features": {
+      "title": "Everything You Need to Succeed",
+      "subtitle": "Built specifically for the unique dynamics of the Egyptian market.",
+      "suppliers": {
+        "title": "Verified Suppliers",
+        "desc": "Access thousands of high-quality products from trusted local and international suppliers."
+      },
+      "cod": {
+        "title": "Cash on Delivery",
+        "desc": "Full support for COD, the preferred payment method in Egypt, with reliable collection."
+      },
+      "shipping": {
+        "title": "Fast Shipping",
+        "desc": "Network of local shipping partners ensuring your customers get their orders in record time."
+      }
+    }
+  },
+  "Navigation": {
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "login": "Login",
+    "startSelling": "Start Selling",
+    "cart": "Cart"
+  },
+  "Products": {
+    "title": "All Products",
+    "searching": "Searching...",
+    "found": "{count} Products Found",
+    "noResults": "No results match your filters.",
+    "clearFilters": "Clear all filters",
+    "addToCart": "Add to Cart",
+    "price": "EGP {price}",
+    "filters": {
+      "categories": "Categories",
+      "allCategories": "All Categories",
+      "priceRange": "Price Range (EGP)",
+      "min": "Min",
+      "max": "Max",
+      "apply": "Apply Price Filter"
+    }
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "shippingInfo": "Shipping Information",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "address": "Detailed Address",
+    "city": "City / Governorate",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "processing": "Processing...",
+    "success": "Order placed successfully!",
+    "emptyCart": "Your cart is empty."
+  },
+  "Footer": {
+    "description": "The premier dropshipping solution for Egypt. Start your business today with zero upfront costs.",
+    "platform": "Platform",
+    "company": "Company",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Stay updated with the latest dropshipping tips and products.",
+    "join": "Join",
+    "rights": "All rights reserved.",
+    "newsletterSuccess": "Thank you for subscribing to our newsletter!"
+  },
+  "ProductDetail": {
+    "loading": "Loading product...",
+    "notFound": "Product not found.",
+    "availability": "Availability",
+    "inStock": "{count} units in stock",
+    "outOfStock": "Out of stock",
+    "buyNow": "Buy Now",
+    "customerReviews": "Customer Reviews",
+    "noReviews": "No reviews yet. Be the first to review this product!",
+    "leaveReview": "Leave a Review",
+    "rating": "Rating",
+    "stars": "{count} Stars",
+    "yourComment": "Your Comment",
+    "commentPlaceholder": "Tell us what you think...",
+    "postReview": "Post Review",
+    "submitting": "Submitting...",
+    "reviewSuccess": "Review submitted successfully!",
+    "reviewError": "Failed to submit review."
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email Address",
+    "password": "Password",
+    "fullName": "Full Name",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loading": "Loading...",
+    "error": "Authentication failed. Please check your credentials."
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "goHome": "Go Home"
+  }
+}

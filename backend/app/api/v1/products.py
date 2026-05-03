@@ -3,6 +3,7 @@ from sqlmodel import Session as SQLSession, select
 from typing import List, Any, Optional
 from app.database import engine
 from app.models.product import Product, ProductCreate, ProductRead
+from app.dependencies import admin_required
 
 router = APIRouter()
 
@@ -45,7 +46,10 @@ def read_products(
 
 @router.post("/", response_model=ProductRead)
 def create_product(
-    *, db: SQLSession = Depends(get_db), product_in: ProductCreate
+    *, 
+    db: SQLSession = Depends(get_db), 
+    product_in: ProductCreate,
+    current_admin: Any = Depends(admin_required)
 ) -> Any:
     """
     Create new product.
@@ -70,7 +74,10 @@ def read_product(
 
 @router.delete("/{id}")
 def delete_product(
-    *, db: SQLSession = Depends(get_db), id: int
+    *, 
+    db: SQLSession = Depends(get_db), 
+    id: int,
+    current_admin: Any = Depends(admin_required)
 ) -> Any:
     """
     Delete a product.

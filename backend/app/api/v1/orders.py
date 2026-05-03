@@ -7,9 +7,14 @@ from app.models.product import Product
 from app.models.user import User, UserRole
 from app.dependencies import get_db, get_current_user, admin_required
 
+router = APIRouter()
+
 @router.post("/", response_model=OrderRead)
 def create_order(
-    *, db: SQLSession = Depends(get_db), order_in: OrderCreate
+    *, 
+    db: SQLSession = Depends(get_db), 
+    order_in: OrderCreate,
+    current_user: User = Depends(get_current_user)
 ) -> Any:
     """
     Create new order and deduct stock.
@@ -46,7 +51,7 @@ def create_order(
 
     # 2. Create the Order
     db_order = Order(
-        user_id=order_in.user_id,
+        user_id=current_user.id,
         total_amount=total_amount,
         shipping_address=order_in.shipping_address,
         customer_name=order_in.customer_name,
@@ -68,7 +73,10 @@ def create_order(
 
 @router.get("/", response_model=List[OrderRead])
 def read_orders(
-    db: SQLSession = Depends(get_db), skip: int = 0, limit: int = 100
+    db: SQLSession = Depends(get_db), 
+    skip: int = 0, 
+    limit: int = 100,
+    current_admin: Any = Depends(admin_required)
 ) -> Any:
     """
     Retrieve orders.

@@ -4,16 +4,22 @@ from typing import List, Any
 from app.database import engine
 from app.models.review import Review, ReviewCreate, ReviewRead
 from app.models.user import User
-from app.dependencies import get_db
+from app.dependencies import get_db, get_current_user
+
+router = APIRouter()
 
 @router.post("/", response_model=ReviewRead)
 def create_review(
-    *, db: SQLSession = Depends(get_db), review_in: ReviewCreate
+    *, 
+    db: SQLSession = Depends(get_db), 
+    review_in: ReviewCreate,
+    current_user: User = Depends(get_current_user)
 ) -> Any:
     """
     Submit a new review.
     """
     db_obj = Review.from_orm(review_in)
+    db_obj.user_id = current_user.id
     db.add(db_obj)
     db.commit()
     db.refresh(db_obj)
