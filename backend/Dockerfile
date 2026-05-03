@@ -22,6 +22,11 @@ RUN pip install --upgrade pip \
 # Copy application code
 COPY . .
 
+# Add non-root user for security
+RUN addgroup --system appgroup && adduser --system --group appuser \
+    && chown -R appuser:appgroup /app
+USER appuser
+
 # Expose port
 EXPOSE 8000
 

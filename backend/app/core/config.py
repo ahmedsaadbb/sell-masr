@@ -21,8 +21,9 @@ class Settings(BaseSettings):
     PAYMOB_IFRAME_ID: Optional[str] = None
     OPENAI_API_KEY: Optional[str] = None
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    model_config = {
+        "env_file": ".env",
+        "case_sensitive": True
+    }
 
 settings = Settings()
